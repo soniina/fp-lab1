@@ -2,8 +2,8 @@ module FibSumEven (recSol, tailRecSol, moduleSol, mapSol, infiniteListSol)  wher
 
 recSol :: Int -> Int -> Int
 recSol a b
-  | next > 4000000 = 0
-  | even next = next + recSol b next
+  | a > 4000000 = 0
+  | even a = a + recSol b next
   | otherwise = recSol b next
   where
     next = a + b
@@ -12,8 +12,8 @@ tailRecSol :: Int -> Int -> Int
 tailRecSol a b = helper a b 0
   where
     helper x y acc
-      | next > 4000000 = acc
-      | even next = helper y next (acc + next)
+      | x > 4000000 = acc
+      | even x = helper y next (acc + x)
       | otherwise = helper y next acc
       where
         next = x + y
