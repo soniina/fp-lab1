@@ -1,10 +1,9 @@
 module DistinctPowers (recSol, tailRecSol, moduleSol, mapSol, infiniteListSol) where
 
-import Data.List (nub)
 import qualified Data.Set as Set
 
 recSol :: Integer -> Int
-recSol n = length (nub (helper 2))
+recSol n = Set.size . Set.fromList $ helper 2
   where
     helper a
       | a > n = []
@@ -29,4 +28,4 @@ mapSol :: Integer -> Int
 mapSol n = Set.size $ Set.fromList $ concatMap (\a -> map (a ^) [2 .. n]) [2 .. n]
 
 infiniteListSol :: Integer -> Int
-infiniteListSol n = Set.size . Set.fromList . takeWhile (<= n ^ n) $ concatMap (\a -> map (a ^) [2 .. n]) [2 ..]
+infiniteListSol n = Set.size . Set.fromList $ (n ^ n) : takeWhile (< n^n) [a^b | a <- [2..], b <- [2..n]]
