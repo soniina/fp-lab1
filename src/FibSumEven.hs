@@ -28,9 +28,9 @@ moduleSol a b = moduleSum . moduleEven $ moduleFibSeq a b
         fibs = x : y : zipWith (+) fibs (tail fibs)
 
 mapSol :: Int -> Int -> Int
-mapSol a b = sum $ filter even fibs
+mapSol a b = sum $ filter even $ takeWhile (<= 4000000) fibs
   where
-    fibs = takeWhile (<= 4000000) $ map fst $ iterate (\(x, y) -> (y, x + y)) (a, b)
+    fibs = map fst $ iterate (\(x, y) -> (y, x + y)) (a, b)
 
 infiniteListSol :: Int -> Int -> Int
 infiniteListSol a b = sum $ filter even $ takeWhile (<= 4000000) fibs
