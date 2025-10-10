@@ -21,7 +21,7 @@ tailRecSol a b = helper a b 0
 moduleSol :: Int -> Int -> Int
 moduleSol a b = moduleSum . moduleEven $ moduleFibSeq a b
   where
-    moduleSum = foldl (+) 0
+    moduleSum = sum
     moduleEven = filter even
     moduleFibSeq x y = takeWhile (<= 4000000) fibs
       where
