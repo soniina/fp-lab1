@@ -22,17 +22,6 @@ ghc-options:
 library:
   source-dirs: src
 
-executables:
-  fp-lab1-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - fp-lab1
-
 tests:
   fp-lab1-test:
     main:                Spec.hs
