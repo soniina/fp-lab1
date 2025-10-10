@@ -10,10 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup GHC + Stack
-        uses: haskell/actions/setup@v2
+      - name: Setup Stack
+        uses: haskell-actions/setup@v2
         with:
           enable-stack: true
+
+      - name: Install GHC 
+        run: stack setup
 
       - name: Cache stack
         uses: actions/cache@v3
@@ -29,17 +32,18 @@ jobs:
 
       - name: Install tools 
         run: |
-            stack install ormolu-0.7.4.0
-            stack install hlint-3.8
+            stack install ormolu
+            stack install hlint
 
       - name: Check formatting
-        run: ormolu --mode check $(find . -name "*.hs")
+        run: stack exec ormolu -- --mode check $(find src test -name "*.hs")
 
       - name: Run HLint
-        run: hlint .
+        run: stack exec hlint -- .
 
       - name: Build
         run: stack build --pedantic --test --no-run-tests
 
       - name: Run tests
         run: stack test
+

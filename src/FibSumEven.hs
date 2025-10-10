@@ -1,4 +1,4 @@
-module FibSumEven (recSol, tailRecSol, moduleSol, mapSol, infiniteListSol)  where
+module FibSumEven (recSol, tailRecSol, moduleSol, mapSol, infiniteListSol) where
 
 recSol :: Int -> Int -> Int
 recSol a b
